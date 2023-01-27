@@ -15,6 +15,12 @@ if (event.target.dataset.action==='plus') {
 }
 //Перевіряєм чи являється елемент кнопкою Плюс
 if (event.target.dataset.action==='minus') {
-    if (parseInt(counter.innerText)>1) {
-        counter.innerText=--counter.innerText;
-    }}})
+//Перевіряєм щоб лічильник був більше на 1 
+if (parseInt(counter.innerText)>1) {
+    counter.innerText=--counter.innerText;
+} else if(event.target.closest('.cart-wrapper') && parseInt(counter.innerText)===1){
+    event.target.closest('.cart-item').remove();
+
+    toggleCartStatus();
+}
+}});

@@ -3,6 +3,7 @@ const cartWraper=document.querySelector('.cart-wrapper');
 window.addEventListener('click',function(event){
 // Перевіряєм що клік був здійснений по кнопці "добавити в корзину"
 if (event.target.hasAttribute('data-cart')) {
+
 // знаходим карточку з товаром по якій було здійсненно клік
 const card=event.target.closest('.card');
 // Збираєм данні з данного обєкта
@@ -16,17 +17,10 @@ const productInfo={
  counter:card.querySelector('[data-counter]').innerText,
 }
 const itemInCart= cartWraper.querySelector(`[data-id="${productInfo.id}"]`);
-console.log(itemInCart);
-
 if(itemInCart){
 const counterElement=itemInCart.querySelector('[data-counter]');
 counterElement.innerText=parseInt(counterElement.innerText) + parseInt(productInfo.counter);
 } else{
-// Якщо товара немає в корзині
-
-
-
-
 // Зібранні данні підставим в шаблон для товара в корзині
 const cartItemHTML=`<div class="cart-item" data-id="${productInfo.id}">
 <div class="cart-item__top">
@@ -52,4 +46,8 @@ const cartItemHTML=`<div class="cart-item" data-id="${productInfo.id}">
 // Відобразим товар в корзині
 cartWraper.insertAdjacentHTML('beforeend',cartItemHTML);
 }
+// Скидуєм лічильник до одиниці
+card.querySelector('[data-counter]').innerText='1';
+//Відображення статусу корзини Пуста або Повна 
+toggleCartStatus();
 }});
