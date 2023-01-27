@@ -14,7 +14,19 @@ const productInfo={
  weight:card.querySelector('.price__weight').innerText,
  price:card.querySelector('.price__currency').innerText,
  counter:card.querySelector('[data-counter]').innerText,
-};
+}
+const itemInCart= cartWraper.querySelector(`[data-id="${productInfo.id}"]`);
+console.log(itemInCart);
+
+if(itemInCart){
+const counterElement=itemInCart.querySelector('[data-counter]');
+counterElement.innerText=parseInt(counterElement.innerText) + parseInt(productInfo.counter);
+} else{
+// Якщо товара немає в корзині
+
+
+
+
 // Зібранні данні підставим в шаблон для товара в корзині
 const cartItemHTML=`<div class="cart-item" data-id="${productInfo.id}">
 <div class="cart-item__top">
@@ -39,4 +51,5 @@ const cartItemHTML=`<div class="cart-item" data-id="${productInfo.id}">
 </div>`;
 // Відобразим товар в корзині
 cartWraper.insertAdjacentHTML('beforeend',cartItemHTML);
+}
 }});
