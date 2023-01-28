@@ -15,7 +15,7 @@ const productInfo={
  weight:card.querySelector('.price__weight').innerText,
  price:card.querySelector('.price__currency').innerText,
  counter:card.querySelector('[data-counter]').innerText,
-}
+};
 const itemInCart= cartWraper.querySelector(`[data-id="${productInfo.id}"]`);
 if(itemInCart){
 const counterElement=itemInCart.querySelector('[data-counter]');
@@ -50,4 +50,6 @@ cartWraper.insertAdjacentHTML('beforeend',cartItemHTML);
 card.querySelector('[data-counter]').innerText='1';
 //Відображення статусу корзини Пуста або Повна 
 toggleCartStatus();
-}});
+calcCartPriceAndDelivery()
+}
+});

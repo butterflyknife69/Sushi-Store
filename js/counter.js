@@ -1,11 +1,11 @@
 //Добавляю прослуховування на всьому вікні
-window.addEventListener('click',function () {
+window.addEventListener('click',function (event) {
 //Повыдомляэм про Перемінну лічильника    
  let counter;   
 //Перевірка чи дійсно ми клікнули по кнопці мінус або плюс
 if (event.target.dataset.action==='plus'||event.target.dataset.action==='minus') {
 //Знаходим обгортку лічильника
-const counterWraper= event.target.closest('.counter-wrapper')
+const counterWraper= event.target.closest('.counter-wrapper');
 //Знаходим "div" з числом лічильника
  counter= counterWraper.querySelector('[data-counter]');
 }
@@ -21,5 +21,11 @@ if (parseInt(counter.innerText)>1) {
 } else if(event.target.closest('.cart-wrapper') && parseInt(counter.innerText)===1){
     event.target.closest('.cart-item').remove();
     toggleCartStatus();
+    calcCardPriceAndDelivery();
 }
-}});
+}
+if(event.target.hasAttribute('[data-action]') && event.target.closest('.cart-wrapper')){
+    calcCardPriceAndDelivery();
+}
+});
+// Finished work on creation of logic for calculation of goods in the basket 
